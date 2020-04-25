@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'RouteManager/routemanager.dart';
 
@@ -10,8 +11,10 @@ void main() {
 
 
 class MainPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
