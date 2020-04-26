@@ -1,7 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'dart:io';
 
 class Generator extends StatefulWidget {
   final int difficulty;
@@ -21,6 +21,7 @@ class _GeneratorState extends State<Generator> {
   Color cc = Color(0xfff2eee5);
   Color cb = Color(0xfff6ad7b);
 
+
   int streak = 0;
   int number;
   String txtcontent;
@@ -32,11 +33,52 @@ class _GeneratorState extends State<Generator> {
 
   @override
   Widget build(BuildContext context) {
+
+    TextStyle basestyle = TextStyle(
+      color: cf,
+      fontFamily: 'germania',
+      fontSize: 30,
+    );
+
     final FlutterTts flutterTts = FlutterTts();
 
     Random random = new Random();
 
+    Future<void> howToPlay() async {
+      return showDialog<void>(
+        context: context,
 
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('How to play?',style: basestyle,),
+            backgroundColor: cc,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)),),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text("1. Press start and a random number will be generated\n", style: basestyle,),
+                  Text("2. Hear the sound and try to guess the number, if needed press the sound icon to hear the number again\n", style: basestyle,),
+                  Text("3. Press verify to see if you got it right\n",style: basestyle,),
+
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Gotcha!',style: TextStyle(
+                  color: cf,
+                  fontFamily: 'germania',
+                  fontSize: 20,
+                ),),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
 
     Future speak() async {
       await flutterTts.setLanguage("de-DE");
@@ -123,11 +165,7 @@ class _GeneratorState extends State<Generator> {
                     child: Center(
                       child: Text(
                         btnsv,
-                        style: TextStyle(
-                          color: cf,
-                          fontFamily: 'germania',
-                          fontSize: 30,
-                        ),
+                        style: basestyle,
                       ),
                     ),
                   ),
@@ -141,20 +179,12 @@ class _GeneratorState extends State<Generator> {
                 // got right/got wrong text
                 Text(
                   trytxt,
-                  style: TextStyle(
-                    color: cf,
-                    fontFamily: 'germania',
-                    fontSize: 30,
-                  ),
+                  style: basestyle,
                 ),
                 //streak
                 Text(
                   "Streak : $streak",
-                  style: TextStyle(
-                    color: cf,
-                    fontFamily: 'germania',
-                    fontSize: 30,
-                  ),
+                  style: basestyle,
                 ),
               ],
             ),
@@ -162,44 +192,47 @@ class _GeneratorState extends State<Generator> {
 
 
 
-           
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    width: 160,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: cc,
-                      border: Border.all(
-                        color: cb,
-                        width: 3,
+            //TODO send this row to the end of the screen without using margin
+            Container(
+              margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.40 , 0,0 ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: 160,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        color: cc,
+                        border: Border.all(
+                          color: cb,
+                          width: 3,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50.0),
+                        ),
                       ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(50.0),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Return",
-                        style: TextStyle(
-                          color: cf,
-                          fontFamily: 'germania',
-                          fontSize: 30,
+                      child: Center(
+                        child: Text(
+                          "Return",
+                          style: basestyle,
                         ),
                       ),
                     ),
                   ),
-                ),
 
 
 
-                Icon(Icons.help,color: cf,size: 70,)
-              ],
+                  GestureDetector(
+                    onTap: (){
+                      howToPlay();
+                    },
+                    child: Icon(Icons.help,color: cf,size: 70,),),
+                ],
+              ),
             ),
           ],
         ),

@@ -31,7 +31,6 @@ class _SelectionState extends State<Selection> {
           Stack(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.fromLTRB(5,20,5,0),
                 height: 300,
 
                 decoration: BoxDecoration(
@@ -41,15 +40,15 @@ class _SelectionState extends State<Selection> {
                     )),
               ),
               Positioned(
-                top: 100,
-                left: MediaQuery.of(context).size.width * 0.25,
+                top: 80,
+                left: MediaQuery.of(context).size.width * 0.20,
                 child: Container(
                   height: 200,
                   child: Center(
                     child: Text(
                       " Number listening \npractice in german",
                       style:
-                      TextStyle(fontSize: 30, color: cf, fontFamily: 'germania'),
+                      TextStyle(fontSize: 40, color: cf, fontFamily: 'germania'),
                     ),
                   ),
                 ),
