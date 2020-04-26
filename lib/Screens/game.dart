@@ -39,6 +39,11 @@ class _GeneratorState extends State<Generator> {
       fontFamily: 'germania',
       fontSize: 30,
     );
+    TextStyle diastyle = TextStyle(
+      color: cf,
+      fontFamily: 'germania',
+      fontSize: 15,
+    );
 
     final FlutterTts flutterTts = FlutterTts();
 
@@ -56,9 +61,9 @@ class _GeneratorState extends State<Generator> {
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
-                  Text("1. Press start and a random number will be generated\n", style: basestyle,),
-                  Text("2. Hear the sound and try to guess the number, if needed press the sound icon to hear the number again\n", style: basestyle,),
-                  Text("3. Press verify to see if you got it right\n",style: basestyle,),
+                  Text("1. Press start and a random number will be generated\n", style: diastyle,),
+                  Text("2. Hear the sound and try to guess the number, if needed press the sound icon to hear the number again\n", style: diastyle,),
+                  Text("3. Press verify to see if you got it right\n",style: diastyle,),
 
                 ],
               ),
@@ -194,7 +199,7 @@ class _GeneratorState extends State<Generator> {
 
             //TODO send this row to the end of the screen without using margin
             Container(
-              margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.40 , 0,0 ),
+              margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.35 , 0,0 ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[

@@ -41,7 +41,7 @@ class _SelectionState extends State<Selection> {
               ),
               Positioned(
                 top: 80,
-                left: MediaQuery.of(context).size.width * 0.20,
+                left: MediaQuery.of(context).size.width * 0.17,
                 child: Container(
                   height: 200,
                   child: Center(
